@@ -11,10 +11,16 @@ const Character = sequelize.define(Character, {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     ki: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate:{
+            isInt:{
+                msg: "El ki debe ser un numero entero"
+            },
+        },
     },
     race: {
         type: DataTypes.STRING,
@@ -23,6 +29,12 @@ const Character = sequelize.define(Character, {
     gender: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+            isIn:  {
+                args: [["male", "female"]],
+                msg: "el genero debe de ser Male o Female"
+            },
+        },
     },
     description: {
         type: DataTypes.TEXT,
