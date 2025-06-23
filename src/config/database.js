@@ -12,3 +12,5 @@ const sequelize = new Sequelize(
         dialect: process.env.DB_DIALECT,
     }
 );
+
+export default sequelize;
