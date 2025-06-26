@@ -15,7 +15,7 @@ export const createCharacter = async (req, res) => {
     }
 }
 if (error instanceof ValidationError){
-    const errors = error.errors.mep(err => ({
+    const errors = error.errors.map(err => ({
         message: err.messege
     }));
     return res.status(404).json({
@@ -25,7 +25,7 @@ if (error instanceof ValidationError){
 export const getAllCharacters = async (req, res)=> {
     try{
         const character = await Character.findAll();
-        res.json(characters);
+        res.json(character);
     } catch (error){
         res.status(404).json({
             messege: "error del servidor al buscar los personajes",
@@ -99,7 +99,7 @@ export const deleteCharacter = async (req,res) => {
     const character = Character.findByPk(characterId);
 
     if (!character){
-        req.status(404).json({
+        res.status(404).json({
             message: "no se encontro el personaje"
         });
     }
