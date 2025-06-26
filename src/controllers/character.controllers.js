@@ -1,5 +1,5 @@
 import { request } from "express";
-import Character from "../models/character.model";
+import Character from "../models/character.model.js";
 import { UniqueConstraintError, ValidationError } from "sequelize";
 
 export const createCharacter = async (req, res) => {
